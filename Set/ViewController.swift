@@ -14,7 +14,9 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     }
-
+    
+    lazy private var game = Set()
+    
     @IBOutlet private weak var scoreLabel: UILabel!
     @IBOutlet private weak var newGameButton: UIButton!
     @IBOutlet private var cardButtons: [UIButton]!
@@ -34,9 +36,13 @@ class ViewController: UIViewController {
     
     private var numberOfDrawnCards = 12
     
-    //lazy private var game = Set()
+    private let shapeDict: [Shape: Int] = [Shape.shape1: ""] 
     
     
     
+}
+
+func == (lhs: Shape, rhs: Shape) -> Bool {
+    return lhs.toInt() == rhs.toInt()
 }
 
