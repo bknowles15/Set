@@ -9,12 +9,12 @@
 import Foundation
 
 struct Set {
-    var cards = [Card]()
+    var displayedCards = [Card]()
     private var cardDeck = SetDeck()
     
     init() {
         for _ in 1...12 {
-            cards.append(cardDeck.drawCard()!)
+            displayedCards.append(cardDeck.drawCard()!)
         }
     }
     

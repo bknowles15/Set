@@ -22,13 +22,19 @@ class ViewController: UIViewController {
     @IBOutlet private var cardButtons: [UIButton]!
     
     @IBAction func touchCard(_ sender: UIButton) {
-        sender.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-        let attributes: [NSAttributedString.Key: Any] = [
-            .strokeWidth: 5.0,
-            .strokeColor: #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
-        ]
-        let cardAttributedText = NSAttributedString(string: "▲▲▲", attributes: attributes)
-        sender.setAttributedTitle(cardAttributedText, for: UIControl.State.normal)
+        let cardIndex = cardButtons.firstIndex(of: sender)!
+        if cardIndex < game.displayedCards.count {
+            sender.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+            let card = game.displayedCards[cardIndex]
+            let cardShape = Shape.getShape(for: card)
+            let cardString = cardShape * card.numberOfShape
+            let attributes: [NSAttributedString.Key: Any] = [
+                .strokeWidth: 5.0,
+                .strokeColor: Color.getColor(for: card)
+            ]
+            let cardAttributedText = NSAttributedString(string: cardString, attributes: attributes)
+            sender.setAttributedTitle(cardAttributedText, for: UIControl.State.normal)
+        }
     }
     
     @IBAction private func touchNewGameButton(_ sender: UIButton) {
@@ -36,13 +42,39 @@ class ViewController: UIViewController {
     
     private var numberOfDrawnCards = 12
     
-    private let shapeDict: [Shape: Int] = [Shape.shape1: ""] 
-    
-    
-    
 }
 
-func == (lhs: Shape, rhs: Shape) -> Bool {
-    return lhs.toInt() == rhs.toInt()
+enum Shape: String {
+    case triangle = "▲"
+    case square = "■"
+    case circle = "●"
+    
+    static var all = [Shape.triangle, .square, .circle]
+    
+    static func getShape(for card: Card) -> String {
+        return Shape.all[card.shapeID].rawValue
+    }
 }
 
+enum Color {
+    case red, green, blue
+    
+    static func getColor(for card: Card) -> UIColor {
+        let colorValue = Color.all[card.colorID]
+        switch colorValue {
+        case .red: return #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
+        case .green: return #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
+        case .blue: return #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
+        }
+    }
+    
+    static var all = [Color.red, .green, .blue]
+}
+
+func *(lhs: String, rhs: Int) -> String {
+    var repeatedString = ""
+    for _ in 0..<rhs {
+        repeatedString += lhs
+    }
+    return repeatedString
+}

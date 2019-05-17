@@ -12,12 +12,12 @@ struct SetDeck {
     private var cards = [Card]()
     
     init() {
-        for numberOfShape in 1...3 {
-            for colorID in 1...3 {
-                for shadeID in 1...3 {
-                    cards.append(Card(shape: Shape.shape1(numberOfShape: numberOfShape, colorID: colorID, shadeID: shadeID)))
-                    cards.append(Card(shape: Shape.shape2(numberOfShape: numberOfShape, colorID: colorID, shadeID: shadeID)))
-                    cards.append(Card(shape: Shape.shape3(numberOfShape: numberOfShape, colorID: colorID, shadeID: shadeID)))
+        for shapeID in 0..<3 {
+            for numberOfShape in 1...3 {
+                for colorID in 0..<3 {
+                    for shadeID in 0..<3 {
+                        cards.append(Card(shapeID: shapeID, numberOfShape: numberOfShape, colorID: colorID, shadeID: shadeID))
+                    }
                 }
             }
         }
