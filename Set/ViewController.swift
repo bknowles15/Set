@@ -12,20 +12,14 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-    }
-    
-    lazy private var game = Set()
-    
-    @IBOutlet private weak var scoreLabel: UILabel!
-    @IBOutlet private weak var newGameButton: UIButton!
-    @IBOutlet private var cardButtons: [UIButton]!
-    
-    @IBAction func touchCard(_ sender: UIButton) {
-        let cardIndex = cardButtons.firstIndex(of: sender)!
-        if cardIndex < game.displayedCards.count {
-            sender.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-            let card = game.displayedCards[cardIndex]
+        
+        for index in cardButtons.indices {
+            cardButtons[index].layer.cornerRadius = 8.0
+        }
+        
+        for index in game.displayedCards.indices {
+            cardButtons[index].backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+            let card = game.displayedCards[index]
             let cardShape = Shape.getShape(for: card)
             let cardString = cardShape * card.numberOfShape
             let attributes: [NSAttributedString.Key: Any] = [
@@ -33,7 +27,22 @@ class ViewController: UIViewController {
                 .strokeColor: Color.getColor(for: card)
             ]
             let cardAttributedText = NSAttributedString(string: cardString, attributes: attributes)
-            sender.setAttributedTitle(cardAttributedText, for: UIControl.State.normal)
+            cardButtons[index].setAttributedTitle(cardAttributedText, for: UIControl.State.normal)
+        }
+    }
+    
+    lazy private var game = Set()
+    
+    @IBOutlet private weak var scoreLabel: UILabel!
+    @IBOutlet private weak var newGameButton: UIButton!
+    @IBOutlet var cardButtons: [UIButton]!
+    
+    @IBAction func touchCard(_ sender: UIButton) {
+        let cardIndex = cardButtons.firstIndex(of: sender)!
+        if cardIndex < game.displayedCards.count {
+            sender.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+            sender.layer.borderWidth = 3.0
+            sender.layer.borderColor = UIColor.blue.cgColor
         }
     }
     

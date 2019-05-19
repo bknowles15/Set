@@ -283,30 +283,30 @@
                     <connections>
                         <outlet property="newGameButton" destination="RH6-B0-RpQ" id="cDc-vl-Kf7"/>
                         <outlet property="scoreLabel" destination="XHM-nG-85a" id="3dC-af-kxc"/>
-                        <outletCollection property="cardButtons" destination="hIR-Zu-hTc" collectionClass="NSMutableArray" id="3D5-ZK-JAV"/>
-                        <outletCollection property="cardButtons" destination="bOB-NC-0OS" collectionClass="NSMutableArray" id="5Ln-VJ-wmQ"/>
-                        <outletCollection property="cardButtons" destination="Bo8-oV-1KP" collectionClass="NSMutableArray" id="uqf-zg-fWP"/>
-                        <outletCollection property="cardButtons" destination="GW5-am-ON9" collectionClass="NSMutableArray" id="Mts-3a-9pr"/>
-                        <outletCollection property="cardButtons" destination="lj7-WQ-EdT" collectionClass="NSMutableArray" id="A5r-uW-1Mq"/>
-                        <outletCollection property="cardButtons" destination="6Z5-nK-oNk" collectionClass="NSMutableArray" id="nqh-pa-MdF"/>
-                        <outletCollection property="cardButtons" destination="jlZ-gS-nac" collectionClass="NSMutableArray" id="5AH-Km-dgD"/>
-                        <outletCollection property="cardButtons" destination="xXt-W0-95d" collectionClass="NSMutableArray" id="2NT-P8-4I5"/>
-                        <outletCollection property="cardButtons" destination="3J6-ZY-cMI" collectionClass="NSMutableArray" id="n4E-yb-nux"/>
-                        <outletCollection property="cardButtons" destination="60J-ed-tKB" collectionClass="NSMutableArray" id="7g7-D4-koe"/>
-                        <outletCollection property="cardButtons" destination="Jsf-ky-YpD" collectionClass="NSMutableArray" id="bTX-2V-pbr"/>
-                        <outletCollection property="cardButtons" destination="IYB-vE-Lsu" collectionClass="NSMutableArray" id="vJE-NB-uJN"/>
-                        <outletCollection property="cardButtons" destination="D1p-4B-8OU" collectionClass="NSMutableArray" id="2dW-A1-NLX"/>
-                        <outletCollection property="cardButtons" destination="T12-ka-Ovw" collectionClass="NSMutableArray" id="Wfp-Da-coc"/>
-                        <outletCollection property="cardButtons" destination="MFT-eh-HPB" collectionClass="NSMutableArray" id="edO-lr-NHt"/>
-                        <outletCollection property="cardButtons" destination="ukV-bL-T5P" collectionClass="NSMutableArray" id="fCk-LT-MaA"/>
-                        <outletCollection property="cardButtons" destination="2r6-F5-qQ8" collectionClass="NSMutableArray" id="NL1-DL-BBE"/>
-                        <outletCollection property="cardButtons" destination="LmW-eB-SQT" collectionClass="NSMutableArray" id="sXf-yC-61p"/>
-                        <outletCollection property="cardButtons" destination="CjX-gR-EpY" collectionClass="NSMutableArray" id="cFY-Js-4zq"/>
-                        <outletCollection property="cardButtons" destination="M9t-Fe-Kx5" collectionClass="NSMutableArray" id="5tz-v7-fc3"/>
-                        <outletCollection property="cardButtons" destination="xrJ-tl-jG9" collectionClass="NSMutableArray" id="2qe-0o-D6S"/>
-                        <outletCollection property="cardButtons" destination="now-RX-RTp" collectionClass="NSMutableArray" id="jl4-58-ge3"/>
-                        <outletCollection property="cardButtons" destination="k9e-dK-Kq2" collectionClass="NSMutableArray" id="EtA-Xu-pFM"/>
-                        <outletCollection property="cardButtons" destination="B3L-ZW-z0O" collectionClass="NSMutableArray" id="3BF-di-azC"/>
+                        <outletCollection property="cardButtons" destination="hIR-Zu-hTc" collectionClass="NSMutableArray" id="BRa-Ik-i0Z"/>
+                        <outletCollection property="cardButtons" destination="bOB-NC-0OS" collectionClass="NSMutableArray" id="JFE-Iz-6uc"/>
+                        <outletCollection property="cardButtons" destination="Bo8-oV-1KP" collectionClass="NSMutableArray" id="DRQ-VT-rV3"/>
+                        <outletCollection property="cardButtons" destination="GW5-am-ON9" collectionClass="NSMutableArray" id="Hqh-iW-O91"/>
+                        <outletCollection property="cardButtons" destination="lj7-WQ-EdT" collectionClass="NSMutableArray" id="oZc-MN-yjZ"/>
+                        <outletCollection property="cardButtons" destination="6Z5-nK-oNk" collectionClass="NSMutableArray" id="1V0-4T-0LV"/>
+                        <outletCollection property="cardButtons" destination="jlZ-gS-nac" collectionClass="NSMutableArray" id="Ijr-qh-VHx"/>
+                        <outletCollection property="cardButtons" destination="xXt-W0-95d" collectionClass="NSMutableArray" id="keD-bb-EFn"/>
+                        <outletCollection property="cardButtons" destination="3J6-ZY-cMI" collectionClass="NSMutableArray" id="Erf-Yi-sLd"/>
+                        <outletCollection property="cardButtons" destination="CjX-gR-EpY" collectionClass="NSMutableArray" id="l42-VI-gjM"/>
+                        <outletCollection property="cardButtons" destination="M9t-Fe-Kx5" collectionClass="NSMutableArray" id="Whp-O1-nog"/>
+                        <outletCollection property="cardButtons" destination="xrJ-tl-jG9" collectionClass="NSMutableArray" id="WNA-z5-8IW"/>
+                        <outletCollection property="cardButtons" destination="now-RX-RTp" collectionClass="NSMutableArray" id="t9o-vo-LUV"/>
+                        <outletCollection property="cardButtons" destination="k9e-dK-Kq2" collectionClass="NSMutableArray" id="zf2-e4-2PP"/>
+                        <outletCollection property="cardButtons" destination="B3L-ZW-z0O" collectionClass="NSMutableArray" id="s3h-oH-U8i"/>
+                        <outletCollection property="cardButtons" destination="60J-ed-tKB" collectionClass="NSMutableArray" id="ms0-yU-LYn"/>
+                        <outletCollection property="cardButtons" destination="Jsf-ky-YpD" collectionClass="NSMutableArray" id="un1-lF-pJJ"/>
+                        <outletCollection property="cardButtons" destination="IYB-vE-Lsu" collectionClass="NSMutableArray" id="kNW-py-nWB"/>
+                        <outletCollection property="cardButtons" destination="D1p-4B-8OU" collectionClass="NSMutableArray" id="MXq-ww-p0G"/>
+                        <outletCollection property="cardButtons" destination="T12-ka-Ovw" collectionClass="NSMutableArray" id="6P5-BP-aAK"/>
+                        <outletCollection property="cardButtons" destination="MFT-eh-HPB" collectionClass="NSMutableArray" id="mtH-OQ-nxi"/>
+                        <outletCollection property="cardButtons" destination="ukV-bL-T5P" collectionClass="NSMutableArray" id="XQl-2j-nHa"/>
+                        <outletCollection property="cardButtons" destination="2r6-F5-qQ8" collectionClass="NSMutableArray" id="cLA-hr-fJo"/>
+                        <outletCollection property="cardButtons" destination="LmW-eB-SQT" collectionClass="NSMutableArray" id="Fyt-Hx-fxa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
