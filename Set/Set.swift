@@ -21,6 +21,14 @@ struct Set {
         }
     }
     
+    /// Adds 3 more cards to the game if the deck has enough cards.
+    mutating func add3MoreCards() {
+        if cardDeck.cardsLeft >= 3 {
+            for _ in 1...3 {
+                displayedCards.append(cardDeck.drawCard()!)
+            }
+        }
+    }
     
 }
 

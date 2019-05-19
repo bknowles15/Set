@@ -20,17 +20,32 @@ class ViewController: UIViewController {
         
         // Display the first 12 cards.
         for index in game.displayedCards.indices {
-            cardButtons[index].backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-            let card = game.displayedCards[index]
-            let cardShape = Shape.getShape(for: card)
-            let cardString = cardShape * card.numberOfShape
-            let attributes: [NSAttributedString.Key: Any] = [
-                .strokeWidth: 5.0,
-                .strokeColor: Color.getColor(for: card)
-            ]
-            let cardAttributedText = NSAttributedString(string: cardString, attributes: attributes)
-            cardButtons[index].setAttributedTitle(cardAttributedText, for: UIControl.State.normal)
+            displayCard(at: index)
+//            cardButtons[index].backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+//            let card = game.displayedCards[index]
+//            let cardShape = Shape.getShape(for: card)
+//            let cardString = cardShape * card.numberOfShape
+//            let attributes: [NSAttributedString.Key: Any] = [
+//                .strokeWidth: 5.0,
+//                .strokeColor: Color.getColor(for: card)
+//            ]
+//            let cardAttributedText = NSAttributedString(string: cardString, attributes: attributes)
+//            cardButtons[index].setAttributedTitle(cardAttributedText, for: UIControl.State.normal)
         }
+    }
+    
+    /// Displays a Set card by making the background white and adding the appropriate image.
+    private func displayCard(at index: Int) {
+        cardButtons[index].backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        let card = game.displayedCards[index]
+        let cardShape = Shape.getShape(for: card)
+        let cardString = cardShape * card.numberOfShape
+        let attributes: [NSAttributedString.Key: Any] = [
+            .strokeWidth: 5.0,
+            .strokeColor: Color.getColor(for: card)
+        ]
+        let cardAttributedText = NSAttributedString(string: cardString, attributes: attributes)
+        cardButtons[index].setAttributedTitle(cardAttributedText, for: UIControl.State.normal)
     }
     
     /// Stores a game of Set, including the displayed cards, selected cards, and status of the game.
@@ -51,6 +66,14 @@ class ViewController: UIViewController {
         }
     }
     
+    /// Displays 3 more cards when the "Deal 3 More Cards" button is pressed.
+    @IBAction func touchDeal3MoreCardsButton(_ sender: Any) {
+        // TODO: Catch an exception if the game couldn't add 3 more cards.
+        game.add3MoreCards()
+        for index in (game.displayedCards.count - 3)..<(game.displayedCards.count) {
+            displayCard(at: index)
+        }
+    }
     /// Creates a new game when `newGameButton` is pressed.
     @IBAction private func touchNewGameButton(_ sender: UIButton) {
         // Create a new game

@@ -13,6 +13,11 @@ import Foundation
 struct SetDeck {
     private var cards = [Card]()
     
+    /// Returns the number of cards left in the deck.
+    var cardsLeft: Int {
+        return cards.count
+    }
+    
     init() {
         for shapeID in 0..<3 {
             for numberOfShape in 1...3 {
