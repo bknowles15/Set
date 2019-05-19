@@ -69,6 +69,7 @@ class ViewController: UIViewController {
     /// Displays 3 more cards when the "Deal 3 More Cards" button is pressed.
     @IBAction func touchDeal3MoreCardsButton(_ sender: Any) {
         // TODO: Catch an exception if the game couldn't add 3 more cards.
+        // TODO: Make sure enough cards can fit in the UI. May want to get match functionality working first.
         game.add3MoreCards()
         for index in (game.displayedCards.count - 3)..<(game.displayedCards.count) {
             displayCard(at: index)
