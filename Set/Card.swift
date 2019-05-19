@@ -8,6 +8,9 @@
 
 import Foundation
 
+/// A Set card.
+/// Keeps track of the identifier for the card's shape, color, and shade, as well as the number of times
+/// the shape appears on the card.
 struct Card {
     let shapeID: Int
     let numberOfShape: Int

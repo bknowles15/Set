@@ -8,6 +8,9 @@
 
 import Foundation
 
+/// TODO: Update documentation as struct changes.
+/// A game of Set.
+/// Keeps track of the displayed cards, selected cards, and score.
 struct Set {
     var displayedCards = [Card]()
     private var cardDeck = SetDeck()
@@ -21,6 +24,7 @@ struct Set {
     
 }
 
+/// An extension for Int that allows for random number generation with the defined `arc4random` computed property.
 extension Int {
     var arc4random: Int {
         if self > 0 {

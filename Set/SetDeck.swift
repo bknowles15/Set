@@ -8,6 +8,8 @@
 
 import Foundation
 
+/// A deck of Set cards.
+/// Sets the shape, number of times the shape appears on the card, color, and shade.
 struct SetDeck {
     private var cards = [Card]()
     
@@ -23,6 +25,8 @@ struct SetDeck {
         }
     }
     
+    /// Removes a card from the deck and returns it.
+    /// Returns nil if there are no more cards in the deck.
     mutating func drawCard() -> Card? {
         return cards.count > 0 ? cards.remove(at: cards.count.arc4random) : nil
     }

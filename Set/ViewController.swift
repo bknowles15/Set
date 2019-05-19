@@ -13,10 +13,12 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Set corners of buttons to be rounded.
         for index in cardButtons.indices {
             cardButtons[index].layer.cornerRadius = 8.0
         }
         
+        // Display the first 12 cards.
         for index in game.displayedCards.indices {
             cardButtons[index].backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
             let card = game.displayedCards[index]
@@ -31,12 +33,15 @@ class ViewController: UIViewController {
         }
     }
     
+    /// Stores a game of Set, including the displayed cards, selected cards, and status of the game.
     lazy private var game = Set()
     
+    /// Outlets for the buttons and labels on screen.
     @IBOutlet private weak var scoreLabel: UILabel!
     @IBOutlet private weak var newGameButton: UIButton!
-    @IBOutlet var cardButtons: [UIButton]!
+    @IBOutlet private var cardButtons: [UIButton]!
     
+    /// Selects a card when the chosen card is touched.
     @IBAction func touchCard(_ sender: UIButton) {
         let cardIndex = cardButtons.firstIndex(of: sender)!
         if cardIndex < game.displayedCards.count {
@@ -46,13 +51,16 @@ class ViewController: UIViewController {
         }
     }
     
+    /// Creates a new game when `newGameButton` is pressed.
     @IBAction private func touchNewGameButton(_ sender: UIButton) {
+        // Create a new game
     }
     
     private var numberOfDrawnCards = 12
     
 }
 
+/// Stores the different shape choices for a card.
 enum Shape: String {
     case triangle = "▲"
     case square = "■"
@@ -65,6 +73,7 @@ enum Shape: String {
     }
 }
 
+/// Stores the different color choices for a card.
 enum Color {
     case red, green, blue
     
@@ -80,6 +89,8 @@ enum Color {
     static var all = [Color.red, .green, .blue]
 }
 
+/// Overload of the * operator for strings to repeat a given string `lhs` by `rhs` times.
+/// Similar to the * operator for strings in Python.
 func *(lhs: String, rhs: Int) -> String {
     var repeatedString = ""
     for _ in 0..<rhs {
