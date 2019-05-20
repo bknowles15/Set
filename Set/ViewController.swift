@@ -21,35 +21,45 @@ class ViewController: UIViewController {
         // Display the first 12 cards.
         for index in game.displayedCards.indices {
             displayCard(at: index)
-//            cardButtons[index].backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-//            let card = game.displayedCards[index]
-//            let cardShape = Shape.getShape(for: card)
-//            let cardString = cardShape * card.numberOfShape
-//            let attributes: [NSAttributedString.Key: Any] = [
-//                .strokeWidth: 5.0,
-//                .strokeColor: Color.getColor(for: card)
-//            ]
-//            let cardAttributedText = NSAttributedString(string: cardString, attributes: attributes)
-//            cardButtons[index].setAttributedTitle(cardAttributedText, for: UIControl.State.normal)
         }
     }
     
     /// Displays a Set card by making the background white and adding the appropriate image.
     private func displayCard(at index: Int) {
-        cardButtons[index].backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-        let card = game.displayedCards[index]
-        let cardShape = Shape.getShape(for: card)
-        let cardString = cardShape * card.numberOfShape
-        let attributes: [NSAttributedString.Key: Any] = [
-            .strokeWidth: 5.0,
-            .strokeColor: Color.getColor(for: card)
-        ]
-        let cardAttributedText = NSAttributedString(string: cardString, attributes: attributes)
+        // Card is still in play
+        if let card = game.displayedCards[index] {
+            cardButtons[index].backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+            cardButtons[index].layer.borderWidth = 0.0
+            
+            let cardShape = Shape.getShape(for: card)
+            let cardColor = Color.getColor(for: card)
+            let cardShade = game.getShade(for: card)
+            let cardString = cardShape * card.numberOfShape
+            let attributes = getStringAttributes(color: cardColor, shade: cardShade)
+            let cardAttributedText = NSAttributedString(string: cardString, attributes: attributes)
+            
+            cardButtons[index].setAttributedTitle(cardAttributedText, for: UIControl.State.normal)
+        }
+        
+        // No cards left to show; make card invisible.
+        else {
+            makeCardInvisible(at: index)
+        }
+    }
+    
+    /// Makes a card invisible when there is no card to be displayed, or when game has restarted.
+    private func makeCardInvisible(at index: Int) {
+        cardButtons[index].backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0)
+        cardButtons[index].layer.borderWidth = 0.0
+        
+        let attributes = [NSAttributedString.Key: Any]()
+        let cardAttributedText = NSAttributedString(string: "", attributes: attributes)
+        
         cardButtons[index].setAttributedTitle(cardAttributedText, for: UIControl.State.normal)
     }
     
     /// Stores a game of Set, including the displayed cards, selected cards, and status of the game.
-    lazy private var game = Set()
+    lazy private var game = SetGame()
     
     /// Outlets for the buttons and labels on screen.
     @IBOutlet private weak var scoreLabel: UILabel!
@@ -59,28 +69,82 @@ class ViewController: UIViewController {
     /// Selects a card when the chosen card is touched.
     @IBAction func touchCard(_ sender: UIButton) {
         let cardIndex = cardButtons.firstIndex(of: sender)!
-        if cardIndex < game.displayedCards.count {
-            sender.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-            sender.layer.borderWidth = 3.0
-            sender.layer.borderColor = UIColor.blue.cgColor
-        }
+        game.selectCard(at: cardIndex)
+        updateView()
     }
     
     /// Displays 3 more cards when the "Deal 3 More Cards" button is pressed.
     @IBAction func touchDeal3MoreCardsButton(_ sender: Any) {
-        // TODO: Catch an exception if the game couldn't add 3 more cards.
-        // TODO: Make sure enough cards can fit in the UI. May want to get match functionality working first.
-        game.add3MoreCards()
-        for index in (game.displayedCards.count - 3)..<(game.displayedCards.count) {
-            displayCard(at: index)
+        // Replace matched cards.
+        if game.selectedCardsAreAMatch {
+            game.add3MoreCards()
         }
+        // There is enough room on the UI to add more cards.
+        else if numberOfDisplayedCards < maxNumberOfCards {
+            game.add3MoreCards()
+            numberOfDisplayedCards += 3
+        }
+        
+        updateView()
     }
     /// Creates a new game when `newGameButton` is pressed.
     @IBAction private func touchNewGameButton(_ sender: UIButton) {
-        // Create a new game
+        game = SetGame()
+        numberOfDisplayedCards = 12
+        removeNewlyUndisplayedCards()
+        updateView()
     }
     
-    private var numberOfDrawnCards = 12
+    private let maxNumberOfCards = 24
+    private var numberOfDisplayedCards = 12
+    
+    /// Updates the view after making a change to the game.
+    private func updateView() {
+        for index in game.displayedCards.indices {
+            displayCard(at: index)
+        }
+        
+        for index in game.getSelectedCardIndices() {
+            cardButtons[index].layer.borderWidth = 3.0
+            cardButtons[index].layer.borderColor = UIColor.blue.cgColor
+        }
+        
+        if game.selectedCards.count == 3 {
+            for index in game.getSelectedCardIndices() {
+                cardButtons[index].backgroundColor = game.selectedCardsAreAMatch ? #colorLiteral(red: 0.9994240403, green: 0.9855536819, blue: 0, alpha: 1) : #colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1)
+            }
+        }
+        
+        scoreLabel.text = "Score: \(game.score)"
+    }
+    
+    /// Removes the cards that are not supposed to be displayed anymore because a new game has started.
+    private func removeNewlyUndisplayedCards() {
+        for index in stride(from: game.displayedCards.count, to: maxNumberOfCards, by: 1) {
+            makeCardInvisible(at: index)
+        }
+    }
+    
+    /// Sets the attributes for an NSAttributedString based on the provided color and shade values.
+    func getStringAttributes(color: UIColor, shade shadeValue: Int) -> [NSAttributedString.Key: Any] {
+        var attributes: [NSAttributedString.Key: Any] = [
+            .strokeColor: color
+        ]
+        
+        let shade = Shade(rawValue: shadeValue)!
+        switch shade {
+        case .filled:
+            attributes[.strokeWidth] = -5.0
+            attributes[.foregroundColor] = color
+        case .striped:
+            attributes[.strokeWidth] = -5.0
+            attributes[.foregroundColor] = color.withAlphaComponent(0.15)
+        case .outline:
+            attributes[.strokeWidth] = 5.0
+        }
+        
+        return attributes
+    }
     
 }
 
@@ -111,6 +175,11 @@ enum Color {
     }
     
     static var all = [Color.red, .green, .blue]
+}
+
+/// Stores the different shade choices for a card.
+enum Shade: Int {
+    case filled, striped, outline
 }
 
 /// Overload of the * operator for strings to repeat a given string `lhs` by `rhs` times.

@@ -23,7 +23,7 @@ struct SetDeck {
             for numberOfShape in 1...3 {
                 for colorID in 0..<3 {
                     for shadeID in 0..<3 {
-                        cards.append(Card(shapeID: shapeID, numberOfShape: numberOfShape, colorID: colorID, shadeID: shadeID))
+                        cards.append(Card(shapeID: shapeID, numberOfShape: numberOfShape, colorID: colorID, shadeID: shadeID, cardIdentifier: Card.getNewIdentifier()))
                     }
                 }
             }

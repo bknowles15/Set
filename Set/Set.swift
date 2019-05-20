@@ -8,12 +8,13 @@
 
 import Foundation
 
-/// TODO: Update documentation as struct changes.
+// TODO: Update documentation as struct changes.
 /// A game of Set.
 /// Keeps track of the displayed cards, selected cards, and score.
-struct Set {
-    var displayedCards = [Card]()
+struct SetGame {
+    private(set) var displayedCards = [Card]()
     private var cardDeck = SetDeck()
+    private var selectedCards = SetGame<Card>()
     
     init() {
         for _ in 1...12 {
@@ -28,6 +29,14 @@ struct Set {
                 displayedCards.append(cardDeck.drawCard()!)
             }
         }
+    }
+    
+    /// Marks a card as selected.
+    mutating func selectCard(_ card: Card) {
+        if let index = displayedCards.firstIndex(of: card) {
+            
+        }
+        
     }
     
 }
