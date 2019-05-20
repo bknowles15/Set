@@ -65,6 +65,7 @@ class ViewController: UIViewController {
     @IBOutlet private weak var scoreLabel: UILabel!
     @IBOutlet private weak var newGameButton: UIButton!
     @IBOutlet private var cardButtons: [UIButton]!
+    @IBOutlet private weak var deal3MoreCardsButton: UIButton!
     
     /// Selects a card when the chosen card is touched.
     @IBAction func touchCard(_ sender: UIButton) {
@@ -90,6 +91,7 @@ class ViewController: UIViewController {
     /// Creates a new game when `newGameButton` is pressed.
     @IBAction private func touchNewGameButton(_ sender: UIButton) {
         game = SetGame()
+        deal3MoreCardsButton.setTitle("Deal 3 More Cards", for: UIControl.State.normal)
         numberOfDisplayedCards = 12
         removeNewlyUndisplayedCards()
         updateView()
@@ -104,11 +106,13 @@ class ViewController: UIViewController {
             displayCard(at: index)
         }
         
+        // Outline selected cards in blue
         for index in game.getSelectedCardIndices() {
             cardButtons[index].layer.borderWidth = 3.0
             cardButtons[index].layer.borderColor = UIColor.blue.cgColor
         }
         
+        // Show a match or no match
         if game.selectedCards.count == 3 {
             for index in game.getSelectedCardIndices() {
                 cardButtons[index].backgroundColor = game.selectedCardsAreAMatch ? #colorLiteral(red: 0.9994240403, green: 0.9855536819, blue: 0, alpha: 1) : #colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1)
@@ -116,6 +120,18 @@ class ViewController: UIViewController {
         }
         
         scoreLabel.text = "Score: \(game.score)"
+        
+        if game.isFinished {
+            showEndScreen()
+        }
+    }
+    
+    private func showEndScreen() {
+        for index in game.getSelectedCardIndices() {
+            makeCardInvisible(at: index)
+        }
+        
+        deal3MoreCardsButton.setTitle("Game finished!", for: UIControl.State.normal)
     }
     
     /// Removes the cards that are not supposed to be displayed anymore because a new game has started.

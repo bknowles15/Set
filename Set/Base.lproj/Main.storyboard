@@ -284,6 +284,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="deal3MoreCardsButton" destination="JYA-4v-z78" id="bb8-qd-CdS"/>
                         <outlet property="newGameButton" destination="RH6-B0-RpQ" id="cDc-vl-Kf7"/>
                         <outlet property="scoreLabel" destination="XHM-nG-85a" id="3dC-af-kxc"/>
                         <outletCollection property="cardButtons" destination="hIR-Zu-hTc" collectionClass="NSMutableArray" id="BRa-Ik-i0Z"/>

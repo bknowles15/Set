@@ -15,6 +15,7 @@ struct SetGame {
     private(set) var selectedCards = Set<Card>()
     private(set) var selectedCardsAreAMatch = false
     private(set) var score = 0
+    private(set) var isFinished = false
     private var cardDeck = SetDeck()
     private var cardsOnTable: Int
     
@@ -61,11 +62,18 @@ struct SetGame {
             
             selectedCards.insert(card)
             
-            // Detect a match
+            // Match
             if selectedCards.count == 3, selectedCardsMatch() {
                 selectedCardsAreAMatch = true
                 addToScore()
+                
+                // Game over
+                if cardsOnTable == 3 {
+                    isFinished = true
+                }
             }
+            
+            // No match
             else if selectedCards.count == 3 {
                 score -= 5
             }
@@ -100,7 +108,6 @@ struct SetGame {
                 displayedCards[index] = nil
                 cardsOnTable -= 1
             }
-            //displayedCards[index] = cardDeck.cardsLeft > 0 ? cardDeck.drawCard()! : nil
         }
         
         selectedCards.removeAll()
@@ -109,8 +116,6 @@ struct SetGame {
     
     /// Detects whether the 3 currently selected cards form a set.
     func selectedCardsMatch() -> Bool {
-        //return true // Uncomment to test endgame
-        
         // Check shape
         var checkSet = Set<Int>()
         for card in selectedCards {
