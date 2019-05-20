@@ -109,7 +109,7 @@ struct SetGame {
     
     /// Detects whether the 3 currently selected cards form a set.
     func selectedCardsMatch() -> Bool {
-        return true // Uncomment to test endgame
+        //return true // Uncomment to test endgame
         
         // Check shape
         var checkSet = Set<Int>()
