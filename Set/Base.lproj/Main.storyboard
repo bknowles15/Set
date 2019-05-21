@@ -243,43 +243,46 @@
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RH6-B0-RpQ">
                                 <rect key="frame" x="134.5" y="608" width="106" height="39"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <state key="normal" title="New Game">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
                                     <action selector="touchNewGameButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Voq-wy-42T"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score: 0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XHM-nG-85a">
-                                <rect key="frame" x="148" y="573.5" width="79.5" height="26.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JYA-4v-z78">
-                                <rect key="frame" x="99" y="526.5" width="177" height="39"/>
+                                <rect key="frame" x="99" y="561" width="177" height="39"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <state key="normal" title="Deal 3 More Cards">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
                                     <action selector="touchDeal3MoreCardsButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="XOp-aX-riW"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score: 0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XHM-nG-85a">
+                                <rect key="frame" x="148" y="526.5" width="79.5" height="26.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="V5s-uO-JzN" secondAttribute="trailing" constant="16" id="1Le-vH-TfV"/>
-                            <constraint firstItem="JYA-4v-z78" firstAttribute="top" relation="greaterThanOrEqual" secondItem="V5s-uO-JzN" secondAttribute="bottom" constant="8" symbolic="YES" id="3MH-zZ-D5i"/>
-                            <constraint firstItem="RH6-B0-RpQ" firstAttribute="top" secondItem="XHM-nG-85a" secondAttribute="bottom" constant="8" symbolic="YES" id="4s0-Ty-4p6"/>
+                            <constraint firstItem="XHM-nG-85a" firstAttribute="top" relation="greaterThanOrEqual" secondItem="V5s-uO-JzN" secondAttribute="bottom" constant="8" symbolic="YES" id="2Ag-ZL-hAQ"/>
                             <constraint firstItem="V5s-uO-JzN" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="7xn-De-leu"/>
+                            <constraint firstItem="XHM-nG-85a" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="D0o-ga-dL7"/>
                             <constraint firstItem="RH6-B0-RpQ" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Qgx-1y-1fK"/>
                             <constraint firstItem="V5s-uO-JzN" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="TPW-Pw-bxe"/>
                             <constraint firstItem="JYA-4v-z78" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="W2G-IU-jD6"/>
                             <constraint firstItem="XHM-nG-85a" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="hWF-FP-2ok"/>
-                            <constraint firstItem="XHM-nG-85a" firstAttribute="top" secondItem="JYA-4v-z78" secondAttribute="bottom" constant="8" symbolic="YES" id="ikI-RF-0Md"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="RH6-B0-RpQ" secondAttribute="bottom" constant="20" id="wfG-ZB-fYG"/>
+                            <constraint firstItem="JYA-4v-z78" firstAttribute="top" secondItem="XHM-nG-85a" secondAttribute="bottom" constant="8" symbolic="YES" id="wgi-NZ-HKi"/>
+                            <constraint firstItem="RH6-B0-RpQ" firstAttribute="top" secondItem="JYA-4v-z78" secondAttribute="bottom" constant="8" symbolic="YES" id="zoY-a9-zEy"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>

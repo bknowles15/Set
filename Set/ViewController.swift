@@ -18,33 +18,30 @@ class ViewController: UIViewController {
             cardButtons[index].layer.cornerRadius = 8.0
         }
         
-        // Display the first 12 cards.
-        for index in game.displayedCards.indices {
-            displayCard(at: index)
+        displayCards()
+    }
+    
+    /// Uses forEach with a closure to properly show cards as visible or invisible.
+    private func displayCards() {
+        game.displayedCards.indices.forEach() { index in
+            game.displayedCards[index] != nil ? displayCard(at: index) : makeCardInvisible(at: index)
         }
     }
     
     /// Displays a Set card by making the background white and adding the appropriate image.
     private func displayCard(at index: Int) {
-        // Card is still in play
-        if let card = game.displayedCards[index] {
-            cardButtons[index].backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-            cardButtons[index].layer.borderWidth = 0.0
-            
-            let cardShape = Shape.getShape(for: card)
-            let cardColor = Color.getColor(for: card)
-            let cardShade = game.getShade(for: card)
-            let cardString = cardShape * card.numberOfShape
-            let attributes = getStringAttributes(color: cardColor, shade: cardShade)
-            let cardAttributedText = NSAttributedString(string: cardString, attributes: attributes)
-            
-            cardButtons[index].setAttributedTitle(cardAttributedText, for: UIControl.State.normal)
-        }
+        let card = game.displayedCards[index]!
+        cardButtons[index].backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        cardButtons[index].layer.borderWidth = 0.0
         
-        // No cards left to show; make card invisible.
-        else {
-            makeCardInvisible(at: index)
-        }
+        let cardShape = Shape.getShape(for: card)
+        let cardColor = Color.getColor(for: card)
+        let cardShade = game.getShade(for: card)
+        let cardString = cardShape.multiply(by: card.numberOfShape)
+        let attributes = getStringAttributes(color: cardColor, shade: cardShade)
+        let cardAttributedText = NSAttributedString(string: cardString, attributes: attributes)
+        
+        cardButtons[index].setAttributedTitle(cardAttributedText, for: UIControl.State.normal)
     }
     
     /// Makes a card invisible when there is no card to be displayed, or when game has restarted.
@@ -102,9 +99,7 @@ class ViewController: UIViewController {
     
     /// Updates the view after making a change to the game.
     private func updateView() {
-        for index in game.displayedCards.indices {
-            displayCard(at: index)
-        }
+        displayCards()
         
         // Outline selected cards in blue
         for index in game.getSelectedCardIndices() {
@@ -198,12 +193,13 @@ enum Shade: Int {
     case filled, striped, outline
 }
 
-/// Overload of the * operator for strings to repeat a given string `lhs` by `rhs` times.
-/// Similar to the * operator for strings in Python.
-func *(lhs: String, rhs: Int) -> String {
-    var repeatedString = ""
-    for _ in 0..<rhs {
-        repeatedString += lhs
+extension String {
+    /// Repeats a string (`self`) `numberOfRepeats` times.
+    func multiply(by numberOfRepeats: Int) -> String {
+        var multipliedString = ""
+        for _ in 0..<numberOfRepeats {
+            multipliedString += self
+        }
+        return multipliedString
     }
-    return repeatedString
 }
